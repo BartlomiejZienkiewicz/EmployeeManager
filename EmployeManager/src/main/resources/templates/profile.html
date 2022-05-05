@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title th:text="${user.username}"></title>
+    <link rel="stylesheet" href="../static/css/profile.css" th:href="@{/css/profile.css}">
 </head>
 <body>
-$END$
+<div>
+    <div class="dropdown">
+        <button class="dropbtn">Resources</button>
+        <div class="dropdown-content">
+            <a href="/main_page/teams">Teams</a>
+            <a href="/workers">Workers</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Account</button>
+        <div class="dropdown-content">
+            <a href="/profile">Profile</a>
+            <a href="/logout">Log out</a>
+        </div>
+    </div>
+</div>
+<div class="div1">
+    <h1>User data</h1>
+    <h1 th:text = "${'Name: ' +user.name }"></h1>
+    <h1 th:text = "${'Email: ' +user.email }"></h1>
+</div>
+<h1></h1>
+<div class="div1">
+    <h1>Work data</h1>
+    <h1 th:text = "${'Number of teams: '+numberOfTeams}"></h1>
+    <h1 th:text = "${'Number of workers: '+numberOfWorkers}"></h1>
+</div>
+
+
+
+
 </body>
 </html>

@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:form="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Email Confirmed!</title>
+    <link rel="stylesheet" href="../static/css/accountconfirmation.css" th:href="@{/css/accountconfirmation.css}">
 </head>
 <body>
-
+    <div class="block">
     <h1>Your account is active!</h1>
     <a href="/login">Go to logging panel</a>
-
+    </div>
 </body>
 </html>

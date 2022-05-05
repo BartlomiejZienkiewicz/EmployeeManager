@@ -1,20 +1,40 @@
 package com.manager.EmployeManager.entity;
 
+import com.manager.EmployeManager.service.WorkerService;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name="groups")
-public class Group {
+@Table(name="teams")
+public class Team {
 
     @Id
-    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
     @Column(name="name")
     private String name;
 
-    public Group() {
+    @Column(name="id_of_owner")
+    private Integer idOfUser;
+
+    @Column(name="id_of_task")
+    private Integer idOfTask;
+
+
+    public Team() {
+        idOfTask = 0;
+    }
+
+
+    public Integer getIdOfTask() {
+        return idOfTask;
+    }
+
+    public void setIdOfTask(Integer idOfTask) {
+        this.idOfTask = idOfTask;
     }
 
     public Integer getId() {
@@ -31,5 +51,22 @@ public class Group {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getIdOfUser() {
+        return idOfUser;
+    }
+
+    public void setIdOfUser(Integer idOfUser) {
+        this.idOfUser = idOfUser;
+    }
+
+    @Override
+    public String toString() {
+        return "Team{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", idOfUser=" + idOfUser +
+                '}';
     }
 }

@@ -1,10 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>History</title>
+    <link rel="stylesheet" href="../static/css/teamhistory.css" th:href="@{/css/teamhistory.css}">
 </head>
 <body>
-$END$
+<div>
+    <div class="dropdown">
+        <button class="dropbtn">Resources</button>
+        <div class="dropdown-content">
+            <a href="/main_page/teams">Teams</a>
+            <a href="/workers">Workers</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Account</button>
+        <div class="dropdown-content">
+            <a href="/profile">Profile</a>
+            <a href="/logout">Log out</a>
+        </div>
+    </div>
+</div>
+<h1></h1>
+<table>
+
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Date of ending</th>
+    </tr>
+    <tr th:each="task: ${listOfTasks}">
+        <td th:text="${task.name}"></td>
+        <td th:text="${task.description}"></td>
+        <td th:text="${task.status}"></td>
+        <td th:text="${task.simpleDate}"></td>
+
+    </tr>
+</table>
 </body>
 </html>

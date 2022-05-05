@@ -1,10 +1,13 @@
 <!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:form="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Sign up</title>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="../static/css/signup.css" th:href="@{/css/signup.css}">
 
 </head>
-
+<div class="form">
 <form  action="/sign_up" method='POST'>
     <h1 >Sign up</h1>
     <div>Email:</div>
@@ -17,5 +20,6 @@
     <input  name="submit" type="submit" value="Sign up">
 
 </form>
-
+<a href="/login">Go to login</a>
+</div>
 </html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm your email</title>
+    <link rel="stylesheet" href="../static/css/email_confirmation.css" th:href="@{/css/email_confirmation.css}">
+</head>
+<div>
+<body class="block">
+    <p th:text="'Confirmation sent to : '+${email} + '.'"/>
+    <a href="/login">Go to loging panel</a>
+</body>
+</div>
+</html>

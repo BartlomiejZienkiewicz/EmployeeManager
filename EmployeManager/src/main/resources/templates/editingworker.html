@@ -1,10 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Edit Worker</title>
+    <link rel="stylesheet" href="../static/css/editingworker.css" th:href="@{/css/editingworker.css}">
 </head>
 <body>
-$END$
+<div>
+    <div class="dropdown">
+        <button class="dropbtn">Resources</button>
+        <div class="dropdown-content">
+            <a href="/main_page/teams">Teams</a>
+            <a href="/workers">Workers</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Account</button>
+        <div class="dropdown-content">
+            <a href="/profile">Profile</a>
+            <a href="/logout">Log out</a>
+        </div>
+    </div>
+</div>
+<form  th:action="${'/change_worker/'+idOfTeam+'/'+worker.id}">
+
+    <textarea name="name" cols="40" rows="5" >Name</textarea>
+    <textarea name="lastName" cols="40" rows="5" >Last Name</textarea>
+    <textarea name="jobTitle" cols="40" rows="5" >Job Title</textarea>
+    <input  name="submit" type="submit" value="Edit Worker">
+
+
+</form>
+
 </body>
 </html>

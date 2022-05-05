@@ -1,7 +1,9 @@
 package com.manager.EmployeManager.repository;
 
-import com.manager.EmployeManager.entity.Group;
+import com.manager.EmployeManager.entity.Team;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface GroupRepository extends JpaRepository<Group, Integer> {
+@Repository
+public interface TeamRepository extends JpaRepository<Team, Integer> {
 }

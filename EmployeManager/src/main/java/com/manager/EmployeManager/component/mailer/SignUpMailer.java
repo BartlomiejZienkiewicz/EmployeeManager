@@ -1,4 +1,4 @@
-package com.test.component.mailer;
+package com.manager.EmployeManager.component.mailer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;

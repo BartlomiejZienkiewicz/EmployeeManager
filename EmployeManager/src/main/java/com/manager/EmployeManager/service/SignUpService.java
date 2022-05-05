@@ -1,8 +1,8 @@
-package com.test.service;
+package com.manager.EmployeManager.service;
 
-import com.test.component.RandomStringFactory;
-import com.test.component.mailer.SignUpMailer;
-import com.test.entity.User;
+import com.manager.EmployeManager.component.RandomStringFactory;
+import com.manager.EmployeManager.component.mailer.SignUpMailer;
+import com.manager.EmployeManager.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ public class SignUpService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    private InMemoryUserDetailsService userDetailsService;
+    private UserService userService;
 
     private static final int TOKEN_LENGTH = 15;
 
@@ -23,8 +23,8 @@ public class SignUpService {
     private String tokenOfUser;
 
     @Autowired
-    public SignUpService(InMemoryUserDetailsService userDetails, PasswordEncoder passwordEncoder, SignUpMailer signUpMailer) {
-        this.userDetailsService = userDetails;
+    public SignUpService(UserService userDetails, PasswordEncoder passwordEncoder, SignUpMailer signUpMailer) {
+        this.userService = userDetails;
         this.passwordEncoder = passwordEncoder;
         this.signUpMailer = signUpMailer;
     }
@@ -38,13 +38,44 @@ public class SignUpService {
 
         String token = RandomStringFactory.getRandomString(TOKEN_LENGTH);
 
-
-
         user.setConfirmationToken(token);
 
         user.setEnabled(false);
-        userDetailsService.addUser(user);
-        signUpMailer.sendConfirmationLink(user.getEmailAddress(),token);
+        userService.saveUser(user);
+        signUpMailer.sendConfirmationLink(user.getEmail(),token);
+        tokenOfUser = token;
+        return user;
+    }
+
+    public User signUpAdmin(User user){
+        Assert.isNull(user.getId(), "Can't sign up given user, it already has set id. User: " + user.toString());
+        String usernameOfSigningUser = user.getUsername();
+
+        String p = passwordEncoder.encode(user.getPassword());
+        user.setPassword(p);
+
+        String token = RandomStringFactory.getRandomString(TOKEN_LENGTH);
+
+        user.setConfirmationToken(token);
+
+        user.setEnabled(true);
+        userService.saveUser(user);
+        tokenOfUser = token;
+        return user;
+    }
+    public User signUpExampleUser(User user){
+        Assert.isNull(user.getId(), "Can't sign up given user, it already has set id. User: " + user.toString());
+        String usernameOfSigningUser = user.getUsername();
+
+        String p = passwordEncoder.encode(user.getPassword());
+        user.setPassword(p);
+
+        String token = RandomStringFactory.getRandomString(TOKEN_LENGTH);
+
+        user.setConfirmationToken(token);
+
+        user.setEnabled(true);
+        userService.saveUser(user);
         tokenOfUser = token;
         return user;
     }

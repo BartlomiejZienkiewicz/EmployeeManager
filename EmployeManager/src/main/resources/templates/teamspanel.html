@@ -1,10 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Teams</title>
+    <link rel="stylesheet" href="../static/css/teamspanel.css" th:href="@{/css/teamspanel.css}">
 </head>
 <body>
-$END$
+
+<div>
+    <div class="dropdown">
+        <button class="dropbtn">Resources</button>
+        <div class="dropdown-content">
+            <a href="/main_page/teams">Teams</a>
+            <a href="/workers">Workers</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Account</button>
+        <div class="dropdown-content">
+            <a href="/profile">Profile</a>
+            <a href="/logout">Log out</a>
+        </div>
+    </div>
+</div>
+
+<div class="teams-banner">
+<h1>Teams:</h1>
+</div>
+
+    <table>
+
+    <tr>
+    </tr>
+    <tr th:each="team: ${listOfTeams}">
+        <td th:text="${team.name}"></td>
+        <td><a th:href="${'/team/'+team.id}">Show team details</a></td>
+
+    </tr>
+    </table>
+
+<h1 >Add Team</h1>
+<form  action="/adding_team">
+    <div>Name</div>
+    <textarea name="text" cols="40" rows="5"></textarea>
+    <input  name="submit" type="submit" value="Add Team">
+
+
+</form>
+
+
 </body>
 </html>

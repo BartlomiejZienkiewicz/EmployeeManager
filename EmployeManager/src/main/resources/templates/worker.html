@@ -1,10 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Worker</title>
+    <link rel="stylesheet" href="../static/css/worker.css" th:href="@{/css/worker.css}">
 </head>
 <body>
-$END$
+
+<div>
+    <div class="dropdown">
+        <button class="dropbtn">Resources</button>
+        <div class="dropdown-content">
+            <a href="/main_page/teams">Teams</a>
+            <a href="/workers">Workers</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Account</button>
+        <div class="dropdown-content">
+            <a href="/profile">Profile</a>
+            <a href="/logout">Log out</a>
+        </div>
+    </div>
+</div>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Last name</th>
+        <th>Job Title</th>
+        <th>Id of team</th>
+    </tr>
+    <tr>
+        <td th:text="${worker.id}"></td>
+        <td th:text="${worker.name}"></td>
+        <td th:text="${worker.lastName}"></td>
+        <td th:text="${worker.jobTitle}"></td>
+        <td th:text="${worker.idOfTeam}"></td>
+        <td> <a th:href="${'/delete_worker/'+worker.id}">Delete Worker</a> </td>
+
+    </tr>
+</table>
+
+<h1>Edit worker</h1>
+<form  th:action="${'/edit_worker/'+worker.id}">
+
+    <textarea name="name" cols="40" rows="5" th:text="${worker.name}"></textarea>
+    <textarea name="lastName" cols="40" rows="5" th:text="${worker.lastName}"></textarea>
+    <textarea name="jobTitle" cols="40" rows="5" th:text="${worker.jobTitle}"></textarea>
+
+    <input  name="submit" type="submit" value="Edit Worker">
+
+
+</form>
 </body>
 </html>

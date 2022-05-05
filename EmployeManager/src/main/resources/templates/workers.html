@@ -1,10 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Workers</title>
+    <link rel="stylesheet" href="../static/css/workers.css" th:href="@{/css/workers.css}">
+
 </head>
 <body>
-$END$
+
+
+<div>
+    <div class="dropdown">
+        <button class="dropbtn">Resources</button>
+        <div class="dropdown-content">
+            <a href="/main_page/teams">Teams</a>
+            <a href="/workers">Workers</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Account</button>
+        <div class="dropdown-content">
+            <a href="/profile">Profile</a>
+            <a href="/logout">Log out</a>
+        </div>
+    </div>
+</div>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Last Name</th>
+        <th>Job title</th>
+    </tr>
+    <tr th:each="worker: ${workers}">
+        <td th:text="${worker.name}"></td>
+        <td th:text="${worker.lastName}"></td>
+        <td th:text="${worker.jobTitle}"></td>
+        <td> <a th:href="${'/delete_worker/'+worker.id}">Delete Worker</a> </td>
+        <td> <a th:href="${'/worker_details/'+worker.id}">See details</a> </td>
+
+    </tr>
+</table>
+<h1>Hire new worker</h1>
+<form  action="/adding_worker">
+
+    <textarea name="name" cols="40" rows="5">Name</textarea>
+    <textarea name="lastName" cols="40" rows="5">Last Name</textarea>
+    <textarea name="jobTitle" cols="40" rows="5">Job Title</textarea>
+    <input  name="submit" type="submit" value="Add Worker">
+
+
+</form>
 </body>
 </html>

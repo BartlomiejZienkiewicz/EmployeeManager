@@ -1,10 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title th:text="${'Team ' + team.name}"></title>
+    <link rel="stylesheet" href="../static/css/team.css" th:href="@{/css/team.css}">
 </head>
 <body>
-$END$
+<div>
+    <div class="dropdown">
+        <button class="dropbtn">Resources</button>
+        <div class="dropdown-content">
+            <a href="/main_page/teams">Teams</a>
+            <a href="/workers">Workers</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Account</button>
+        <div class="dropdown-content">
+            <a href="/profile">Profile</a>
+            <a href="/logout">Log out</a>
+        </div>
+    </div>
+</div>
+<div class="team-title">
+    <h1 th:text="${'Team: '+team.name}" ></h1>
+</div>
+<div class="team-workers"></div>
+<table>
+
+    <tr>
+        <th>Name</th>
+        <th>Last Name</th>
+        <th>Job title</th>
+    </tr>
+    <tr th:each="worker: ${workers}">
+        <td th:text="${worker.name}"></td>
+        <td th:text="${worker.lastName}"></td>
+        <td th:text="${worker.jobTitle}"></td>
+        <td><a th:href="${'/delete_worker_from_team/'+team.id+'/'+worker.id}">Delete from team</a></td>
+        <td><a th:href="${'/edit_worker/'+team.id+'/'+worker.id}">Edit worker</a></td>
+
+    </tr>
+</table>
+
+<h1>Tasks</h1>
+
+<table>
+
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+    </tr>
+    <tr th:each="task: ${taskList}">
+
+        <td th:text="${task.name}"></td>
+        <td th:text="${task.description}"></td>
+
+        <td><a th:href="${'/set_as_finished/'+task.id+'/'+team.id}">Set as finished</a></td>
+        <td><a th:href="${'/set_as_unfinished/'+task.id+'/'+team.id}">Set as unfinished</a></td>
+        <td><a th:href="${'/delete_task/'+task.id+'/'+team.id}">Delete Task</a></td>
+    </tr>
+</table>
+<h1>Add task</h1>
+<form  th:action="${'/add_task/'+team.id}">
+    <textarea name="name" cols="40" rows="5"></textarea>
+    <textarea name="description" cols="40" rows="5"></textarea>
+
+    <input  name="submit" type="submit" value="Add Task">
+
+
+</form>
+
+<a th:href="${'/historyOfTeam/'+team.id}">Show history of objectives</a>
+
+<h1>Add workers to team</h1>
+<table>
+
+    <tr>
+        <th>Name</th>
+        <th>Last Name</th>
+        <th>Job title</th>
+    </tr>
+    <tr th:each="worker: ${workersFromOtherTeams}">
+        <td th:text="${worker.name}"></td>
+        <td th:text="${worker.lastName}"></td>
+        <td th:text="${worker.jobTitle}"></td>
+        <td><a th:href="${'/assign_worker_to_team/'+team.id+'/'+worker.id}">Assign to team</a></td>
+        <td><a th:href="${'/edit_worker/'+team.id+'/'+worker.id}">Edit worker</a></td>
+
+    </tr>
+</table>
+
+
+
 </body>
 </html>
