@@ -47,11 +47,11 @@ public class TaskService {
     }
 
     public void saveTask(String name, Integer idOfTeam) {
-        String sql = "INSERT INTO tasks (name_of_task, id_of_team) " +
-                "VALUES ('" +
-                name + "' , " + idOfTeam +
-                ")";
-        jdbcTemplate.update(sql);
+
+        Task task = new Task();
+        task.setIdOfTeam(idOfTeam);
+        task.setName(name);
+        taskRepository.save(task);
     }
     public void changeIdOfTeam(Integer idOfTask, Integer idOfTeam){
         String sql = "UPDATE tasks SET id_of_team = "+idOfTeam +" WHERE id= " + idOfTask + ";";

@@ -58,17 +58,12 @@ public class WorkerService {
     public void saveWorker(Worker worker){
         workerRepository.save(worker);
     }
-    public void saveWorker(Integer id, String jobTitle){
-        String sql = "INSERT INTO workers (id,job_title) VALUES ("+id+",'"+jobTitle+"');";
-        jdbcTemplate.update(sql);
-    }
+
     public void giveWorkerNewTeamById(Integer idOfWorker, Integer teamId){
         String sql = "UPDATE workers SET id_of_team = "+teamId+" WHERE id = "+idOfWorker+" ;";
         jdbcTemplate.update(sql);
     }
     public void deleteWorkerById(Integer id){
-        //String sql = "DELETE FROM workers WHERE id="+id+" ;";
-        //jdbcTemplate.update(sql);
         workerRepository.deleteById(id);
     }
 

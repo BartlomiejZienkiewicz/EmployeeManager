@@ -16,12 +16,12 @@ public class TaskController {
     TaskService taskService;
 
     @RequestMapping(value = "/add_task/{id}")
-    private ModelAndView addTask(ModelAndView mav, @PathVariable("id") String idOfTeam,
+    private ModelAndView addTask(ModelAndView mav, @PathVariable("id") Integer idOfTeam,
                                  @RequestParam("nameOfTask") String nameOfTask,
                                  @RequestParam("description") String descriptionOfTask){
 
 
-        taskService.saveTask(nameOfTask,descriptionOfTask,Integer.parseInt(idOfTeam));
+        taskService.saveTask(nameOfTask,idOfTeam);
 
         mav.setViewName("redirect:/team/"+idOfTeam);
         return mav;

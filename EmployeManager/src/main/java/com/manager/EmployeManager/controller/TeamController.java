@@ -110,23 +110,20 @@ public class TeamController {
         return mav;
     }
     @RequestMapping(value = "/edit_worker/{idOfTeam}/{idOfWorker}")
-    private ModelAndView editWorker(ModelAndView mav, @PathVariable("idOfWorker")String idOfWorker,
-                                   @PathVariable("idOfTeam") String idOfTeam){
+    private ModelAndView editWorker(ModelAndView mav, @PathVariable("idOfWorker")Integer idOfWorker,
+                                   @PathVariable("idOfTeam") Integer idOfTeam){
         mav.setViewName("editingworker");
-        Integer intIdOfWorker = Integer.parseInt(idOfWorker);
-        mav.addObject("idOfTeam",Integer.parseInt(idOfTeam));
-        mav.addObject("worker",workerService.findById(intIdOfWorker));
+        mav.addObject("idOfTeam",idOfTeam);
+        mav.addObject("worker",workerService.findById(idOfWorker));
         return mav;
     }
     @GetMapping(value = "/change_worker/{idOfTeam}/{idOfWorker}")
-    private ModelAndView changeWorker(ModelAndView mav, @PathVariable("idOfWorker") String idOfWorker,
+    private ModelAndView changeWorker(ModelAndView mav, @PathVariable("idOfWorker") Integer idOfWorker,
                                      @PathVariable("idOfTeam") String idOfTeam,
                                      @RequestParam("name") String name, @RequestParam("lastName") String lastName,
                                      @RequestParam("jobTitle") String jobTitle){
 
-        Integer intIdOfWorker = Integer.parseInt(idOfWorker);
-        //zmieniłem metodę poniżej
-        workerService.updateWorkerAndGiveNewId(intIdOfWorker,name,lastName,jobTitle);
+        workerService.updateWorkerAndGiveNewId(idOfWorker,name,lastName,jobTitle);
         mav.setViewName("redirect:/team/"+idOfTeam);
         return mav;
     }

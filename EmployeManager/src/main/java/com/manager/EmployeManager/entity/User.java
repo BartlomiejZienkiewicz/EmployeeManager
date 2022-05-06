@@ -141,7 +141,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return enabled;
     }
 
     public void setPassword(String password) {

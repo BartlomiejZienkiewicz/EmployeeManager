@@ -84,14 +84,13 @@ public class WorkerController {
         return mav;
     }
     @RequestMapping(value = "/edit_worker/{id}")
-    private ModelAndView editWorker(ModelAndView mav, @PathVariable("id") String id,
+    private ModelAndView editWorker(ModelAndView mav, @PathVariable("id") Integer id,
                                     @RequestParam("name") String name,
                                     @RequestParam("lastName") String lastName,
                                     @RequestParam("jobTitle") String jobTitle){
 
-        Integer intId = Integer.parseInt(id);
 
-        Integer newId = workerService.updateWorkerAndGiveNewId(intId,name,lastName,jobTitle) + 1;
+        Integer newId = workerService.updateWorkerAndGiveNewId(id,name,lastName,jobTitle) + 1;
 
 
 
