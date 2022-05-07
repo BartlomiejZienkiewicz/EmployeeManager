@@ -1,9 +1,5 @@
 package com.manager.EmployeManager;
 
-import com.manager.EmployeManager.entity.Task;
-import com.manager.EmployeManager.entity.Team;
-import com.manager.EmployeManager.entity.User;
-import com.manager.EmployeManager.entity.Worker;
 import com.manager.EmployeManager.repository.TeamRepository;
 import com.manager.EmployeManager.repository.UserRepository;
 import com.manager.EmployeManager.service.*;
@@ -11,15 +7,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 @SpringBootApplication
-public class EmployeManagerApplication implements CommandLineRunner{
+public class EmployeeManagerApplication implements CommandLineRunner{
 
 	@Autowired
 	private WorkerService workerService;
@@ -48,7 +39,7 @@ public class EmployeManagerApplication implements CommandLineRunner{
 
 
 	public static void main(String[] args) {
-		SpringApplication.run(EmployeManagerApplication.class, args);
+		SpringApplication.run(EmployeeManagerApplication.class, args);
 	}
 
 	public void firstMethod(){
